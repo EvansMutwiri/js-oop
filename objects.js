@@ -15,16 +15,37 @@ User.prototype.logout = function () {
     this.online = false;
     document.querySelector('#greet').innerHTML = ""
 }
+function Admin (...args) {
+    User.apply(this, args);
 
+    this.role = 'administrator';
+}
+
+Admin.prototype = Object.create(User.prototype);
+
+Admin.prototype.delete = function(user) {
+    users = users.filter(u => {
+        return u.email != user.email;
+    })
+}
 
 let userOne = new User('marc@mail.com', 'Papi');
 
 let userTwo = new User('e@mail.com', 'eeezy');
 
-userOne.login();
+let admin = new Admin('admin@mail.com', 'sleazy');
 
-console.table(userOne);
+let users = [userOne, userTwo, admin];
+
+userOne.login();
+admin.login();
+
+console.table(users);
 
 setTimeout(userOne.logout, 10000);
 
-console.table(userOne);
+admin.delete(userTwo);
+
+console.table(users);
+
+console.log(admin);
