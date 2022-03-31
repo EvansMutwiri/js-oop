@@ -1,19 +1,16 @@
 (function () {
   "use strict";
 
-  fetch("https://swapi.dev/api/people/?page=1")
+  const getData = async () => {
+    const response = await fetch("https://swapi.dev/api/people/?page=1");
+    const data = await response.json();
 
-    .then(response => {
-      console.log('resolved', response);
-    return response.json();
-    })
+    // console.table(data.results);
+
+    return data;
+  };
+
+  getData()
+    .then((data) => console.log(data.results));
     
-    .then(data => {
-        console.log(data);
-    })
-
-    .catch((err) => {
-      console.log("message", err);
-    });
-
 })();
