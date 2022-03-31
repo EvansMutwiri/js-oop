@@ -1,4 +1,5 @@
-"use strict"
+(function(){
+    "use strict";
 
 function User(email, username, online) {
     this.email = email;
@@ -37,15 +38,8 @@ let admin = new Admin('admin@mail.com', 'sleazy');
 
 let users = [userOne, userTwo, admin];
 
-userOne.login();
+// userOne.login();
+
 admin.login();
 
-console.table(users);
-
-setTimeout(userOne.logout, 10000);
-
-admin.delete(userTwo);
-
-console.table(users);
-
-console.log(admin);
+})();
